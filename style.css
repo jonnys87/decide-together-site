@@ -1,0 +1,255 @@
+/* Decide Together support site.
+   Vanilla CSS, mobile first, no build step, no framework, no web fonts.
+
+   Colours come from the app's Theme.swift (paper, paperDeep, card, ink,
+   muted, coral, coralDeep, lagoon, sun), so the site and the app look like
+   the same thing. Two are changed for text, in light mode only:
+
+   - Links, the wordmark and the focus ring use coralDeep darkened from
+     #d95243 to #b93425: the same hue, 12 points less lightness. #d95243 is
+     3.76:1 on paper and 3.34:1 on paperDeep, which fails AA.
+   - Secondary text uses the app's muted grey darkened from #6c7773 to
+     #5d6763. #6c7773 is 4.36:1 on paper and 3.86:1 on paperDeep.
+
+   WCAG 2 contrast ratios, on paper (page), card (boxes) and paperDeep
+   (masthead and footer):
+
+     Light                    paper    card    deep
+     ink        #233c43       10.96   11.46    9.72
+     secondary  #5d6763        5.50    5.75    4.88
+     accent     #b93425        5.50    5.76    4.88
+
+     Dark                     paper    card    deep
+     ink        #f9edcf       12.36   10.38   13.77
+     secondary  #bdc4b8        8.05    6.76    8.97
+     accent     #ff9a86        7.00    5.88    7.80
+
+   The contact placeholder is ink #233c43 on sun #f7c548 in both schemes:
+   7.25:1. The skip link is ink on card. The focus ring is the accent, so it
+   is at least 4.88:1 against anything it can sit on, above the 3:1 needed
+   for non-text. Coral, lagoon and sun are 1.5 to 2.9:1 on paper in light
+   mode, so they only ever appear as decorative borders, never as text.
+   Every text pair is at or above 4.5:1, in both schemes. */
+
+:root {
+  color-scheme: light dark;
+  --bg: #fff7e7;
+  --bg-deep: #f7e9cc;
+  --surface: #fffdf5;
+  --ink: #233c43;
+  --secondary: #5d6763;
+  --accent: #b93425;
+  --coral: #f9785e;
+  --lagoon: #27a8a2;
+  --sun: #f7c548;
+  --night-ink: #233c43;
+  /* Hairlines are ink at low opacity, as the app draws its outlines. */
+  --border: rgba(35, 60, 67, 0.18);
+  --radius: 16px;
+  --measure: 36rem;
+  --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #182d32;
+    --bg-deep: #122429;
+    --surface: #203a3f;
+    --ink: #f9edcf;
+    --secondary: #bdc4b8;
+    --accent: #ff9a86;
+    --coral: #ff8169;
+    --lagoon: #5dccbf;
+    --border: rgba(249, 237, 207, 0.16);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.65 ui-serif, Georgia, "Times New Roman", serif;
+}
+
+/* Headings and controls in the system UI face; body copy in a serif. */
+h1, h2, h3, .lede, nav, footer, table, .toc-title {
+  font-family: var(--ui);
+}
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
+h1 { font-size: clamp(2rem, 8vw, 2.75rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.4rem, 5vw, 1.75rem); margin-top: 2.75rem; }
+h3 { font-size: 1.125rem; margin-top: 1.75rem; }
+p { margin: 0 0 1rem; }
+ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+li { margin-bottom: 0.5rem; }
+
+a { color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* A visible focus ring everywhere, and never removed. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.75rem 1rem;
+  z-index: 10;
+}
+.skip:focus { left: 0.5rem; top: 0.5rem; }
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* padding-block, not padding: the shorthand would wipe out .wrap's side
+   padding and push the text against the edge of a phone screen. */
+main.wrap { padding-block-start: 2.5rem; }
+
+/* Header */
+
+.masthead {
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0;
+}
+
+.masthead .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 700 1.25rem/1 var(--ui);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Scoped to the masthead, so the contents list on each page stays a list. */
+.masthead ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+.masthead li { margin: 0; }
+.masthead nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.masthead nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Intro */
+
+.lede {
+  font-size: 1.1875rem;
+  color: var(--secondary);
+  margin-bottom: 1.25rem;
+}
+
+.updated { font-weight: 600; }
+
+/* Contents list */
+
+.toc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin: 1.75rem 0 0;
+}
+.toc-title { font-weight: 600; margin-bottom: 0.5rem; }
+.toc ul { margin: 0; }
+.toc li { margin-bottom: 0.25rem; break-inside: avoid; }
+
+@media (min-width: 34rem) {
+  .toc ul { columns: 2; column-gap: 2rem; }
+}
+
+/* Cards */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--coral);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+}
+.card.calm { border-left-color: var(--lagoon); }
+.card h3 { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+
+/* Plan table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.25rem;
+  font-size: 0.9375rem;
+}
+caption {
+  text-align: left;
+  color: var(--secondary);
+  padding-bottom: 0.5rem;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.75rem 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+td { white-space: nowrap; }
+thead th { border-bottom: 2px solid var(--coral); }
+tbody th { font-weight: 400; }
+
+/* Definition lists, for the services list on the privacy page */
+
+dl { margin: 0 0 1rem; }
+dt { font-weight: 600; font-family: var(--ui); margin-top: 1.25rem; }
+dd { margin: 0.25rem 0 0; }
+
+/* Footer */
+
+footer {
+  margin-top: 3.5rem;
+  padding: 2rem 0 3rem;
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border);
+  font-size: 0.9375rem;
+  color: var(--secondary);
+}
+footer p:last-child { margin-bottom: 0; }
+
+/* Text that must be replaced before release. Loud on purpose, in both
+   schemes: dark ink on sun yellow, with a dashed accent border. */
+.placeholder {
+  background: var(--sun);
+  color: var(--night-ink);
+  border: 2px dashed var(--accent);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}

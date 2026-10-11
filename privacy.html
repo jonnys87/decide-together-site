@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Decide Together privacy policy</title>
+<meta name="description" content="What Decide Together stores, who else handles it, how long it is kept and how to delete it. No advertising, no analytics, no tracking, and your swipes are never shown to anyone else.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Decide Together</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Support</a></li>
+        <li><a href="privacy.html" aria-current="page">Privacy</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <h1>Privacy policy</h1>
+  <p class="lede">
+    Decide Together keeps what it needs to run shared decks. Your swipes are
+    never shown to anyone else. There is no advertising, no analytics and no
+    tracking.
+  </p>
+  <p class="updated">Last updated: 11 October 2026. Applies to Decide Together for iOS, version 1.0.</p>
+
+  <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ul>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#account">Your account</a></li>
+      <li><a href="#stored">What we store</a></li>
+      <li><a href="#other-services">Other services</a></li>
+      <li><a href="#services">Who handles your data</a></li>
+      <li><a href="#not">What we don't do</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#delete">Deleting your account</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <h2 id="who">Who we are</h2>
+  <p>
+    Decide Together is made by Jonny Stokes, an independent developer in the
+    UK, who is the data controller: the person responsible for your personal
+    data under UK data protection law. "We" and "us" on this page mean Jonny.
+  </p>
+  <p>
+    You can reach Jonny at
+    <!-- TODO: real contact email before public release -->
+    <span class="placeholder">[contact email to be added]</span>.
+  </p>
+
+  <h2 id="account">Your account</h2>
+  <p>
+    The app makes a guest account for you automatically. It is a random
+    account ID, with no email address or phone number. You choose a display
+    name, and the people in your decks see it.
+  </p>
+  <p>
+    If you want to keep your account on another device, you can
+    <strong>Sign in with Apple</strong>. This is optional. Apple then gives us
+    a stable identifier for your Apple ID, and may give us an email address.
+    If you choose Hide My Email, that is a private relay address that forwards
+    to you. We use these only to let you back into your account, never for
+    marketing.
+  </p>
+
+  <h2 id="stored">What we store</h2>
+
+  <h3 id="server">On our server</h3>
+  <p>
+    Our server runs on <strong>Supabase</strong>, a hosted database, storage
+    and sign-in service. Supabase is our processor: it holds and handles the
+    data for us, on our instructions. It may process data outside the UK,
+    under its data processing terms. We store:
+  </p>
+  <ul>
+    <li>
+      the decks you make or join, with their settings (such as home airports
+      and anything written under "Anything we should know?"), and their
+      members' display names;
+    </li>
+    <li>
+      the cards, with their titles, descriptions, any photos you add, and the
+      sentence an AI deck was made from;
+    </li>
+    <li>
+      your swipes. These are private to you: other members only ever learn
+      which cards matched;
+    </li>
+    <li>your stars and vetoes on the board, which the deck's members can see;</li>
+    <li>links you add;</li>
+    <li>
+      a record of each AI request: when it was made, how many cards, which
+      model, its size in tokens, and whether it worked;
+    </li>
+    <li>your purchase, if you buy Pro (see <a href="#purchases">purchases</a>).</li>
+  </ul>
+  <p>
+    Our server functions keep short-lived logs, with your account ID, what was
+    asked for and any errors, so we can fix problems.
+  </p>
+
+  <h3 id="photos">Photos you add</h3>
+  <p>
+    A photo you add to a card is stored so everyone in the deck can see it. It
+    sits at a public web address that can't be guessed. Anyone given that
+    exact address could open the photo, whether or not they are in the deck.
+  </p>
+
+  <h2 id="other-services">Other services, and when they are involved</h2>
+
+  <h3 id="ai">AI cards</h3>
+  <p>
+    "Describe it" (on a holiday deck, "Or describe the trip") has AI write
+    cards from a sentence you type. When you use it, our server sends
+    <strong>Anthropic</strong>, through its Claude API:
+  </p>
+  <ul>
+    <li>the sentence you typed;</li>
+    <li>the deck's type, and its title if you have given it one;</li>
+    <li>anything you wrote under "Anything we should know?";</li>
+    <li>the titles of cards already in the deck, so it doesn't repeat them;</li>
+    <li>for a holiday deck, the destinations with direct flights from your home airports.</li>
+  </ul>
+  <p>
+    Anthropic writes the cards and sends them back to our server. It processes
+    the request under its commercial terms, which don't allow it to train its
+    models on the request. See
+    <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>.
+    Nothing is sent to Anthropic unless you use the feature.
+  </p>
+
+  <h3 id="photo-search">Photos for AI cards</h3>
+  <p>
+    For cards written by AI, our server searches
+    <strong>Wikimedia Commons</strong> and <strong>Openverse</strong> by card
+    title for freely licensed photos. The app shows each photo's photographer
+    and licence.
+  </p>
+  <p>
+    Your phone loads these photos directly from the sites that host them.
+    Openverse finds photos hosted on other sites, so a photo found through it
+    loads from that site. Each site sees your phone's IP address, as it would
+    for any website visit. Photos on the built-in holiday cards come with the
+    app and load from nowhere.
+  </p>
+
+  <h3 id="links">Links you add</h3>
+  <p>
+    When you add a link to a card on the board, your phone fetches that page
+    over https to show its title. The site sees your IP address, as it would
+    for any website visit.
+  </p>
+
+  <h3 id="booking">Booking links</h3>
+  <p>
+    On a holiday card marked Booked, "Find flights" and "Find hotels" open
+    Skyscanner, Google Flights or Booking.com in your browser. Their own
+    privacy policies apply there.
+  </p>
+  <p>
+    If a link carries our affiliate code, the site knows the visit came from
+    us and may pay us a commission. We don't receive your personal details from
+    them.
+  </p>
+
+  <h3 id="purchases">Purchases</h3>
+  <p>
+    Apple takes the payment for Pro. We never see your card or billing details.
+  </p>
+  <p>
+    Apple sends us a signed record of the purchase: a transaction number, the
+    product, the dates, whether it has been refunded, and whether it was a test
+    or a real purchase. We link it to your account so Pro works and Restore
+    purchases can bring it back. Apple also sends us notice of refunds, so Pro
+    ends after one.
+  </p>
+
+  <h2 id="services">Who handles your data</h2>
+  <p>Every service involved in running Decide Together, in one place:</p>
+  <dl>
+    <dt>Supabase</dt>
+    <dd>
+      Our database, file storage, sign-in and server functions. Everything
+      under <a href="#stored">what we store</a> is held here.
+    </dd>
+
+    <dt>Anthropic</dt>
+    <dd>Writes AI cards, only when you use "Describe it".</dd>
+
+    <dt>Apple</dt>
+    <dd>Takes payments for Pro, and runs Sign in with Apple if you use it.</dd>
+
+    <dt>Wikimedia Commons and Openverse</dt>
+    <dd>Photo search for AI cards, by card title.</dd>
+  </dl>
+
+  <h2 id="not">What we don't do</h2>
+  <ul>
+    <li>No advertising.</li>
+    <li>No analytics or tracking SDKs.</li>
+    <li>No selling your data, and no sharing it for advertising.</li>
+    <li>No tracking you across other apps or websites.</li>
+  </ul>
+
+  <h2 id="retention">How long we keep it</h2>
+  <p>
+    We keep your data until you delete the deck it belongs to, or your
+    account. Guest accounts that aren't in any decks may be removed after 30
+    days.
+  </p>
+  <p>
+    Deleting the app does <strong>not</strong> delete your account. Use
+    Delete account in the app first, or <a href="#contact">contact us</a>.
+  </p>
+
+  <h2 id="delete">Deleting your account</h2>
+  <p>In the app, go to <strong>Settings › Account › Delete account</strong>. Then:</p>
+  <ul>
+    <li>
+      You leave every deck. A deck other people are in passes to the person
+      who has been in it longest. A deck nobody else is in is deleted, with its
+      photos.
+    </li>
+    <li>
+      Cards and links you added to shared decks stay, without your name. Photos
+      you added are removed.
+    </li>
+    <li>Your swipes, votes, display name and account are deleted.</li>
+    <li>If you signed in with Apple, we ask Apple to revoke the app's access.</li>
+  </ul>
+  <p>Two records stay:</p>
+  <ul>
+    <li>
+      Your purchase record, without your account ID, because the purchase
+      belongs to your Apple ID. You don't need to buy again: Restore purchases
+      brings Pro back on a new account.
+    </li>
+    <li>
+      The record of AI requests, without your account ID, for our monthly cost
+      totals.
+    </li>
+  </ul>
+
+  <h2 id="rights">Your rights</h2>
+  <p>
+    Under UK GDPR you have the right to access the personal data we hold about
+    you, and to have it corrected or deleted. You can also ask us to restrict
+    how we use it, object to how we use it, and have a copy in a form you can
+    take elsewhere (portability).
+  </p>
+  <p>
+    To use any of these rights, contact us at
+    <!-- TODO: real contact email before public release -->
+    <span class="placeholder">[contact email to be added]</span>.
+    If you are unhappy with how we have handled your data, you can
+    <a href="https://ico.org.uk/make-a-complaint/">complain to the Information Commissioner's Office (ICO)</a>.
+  </p>
+
+  <h2 id="children">Children</h2>
+  <p>Decide Together isn't aimed at children under 13.</p>
+
+  <h2 id="changes">Changes to this policy</h2>
+  <p>
+    If this policy changes, we'll update the date at the top. If anything
+    important changes, we'll also tell you in the app.
+  </p>
+
+  <h2 id="contact">Contact</h2>
+  <p>
+    <!-- TODO: real contact email before public release -->
+    <span class="placeholder">[contact email to be added]</span>
+  </p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="index.html">Back to support</a> &middot; &copy; 2026 Jonny Stokes</p>
+  </div>
+</footer>
+
+</body>
+</html>
