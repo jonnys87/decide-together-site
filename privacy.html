@@ -31,7 +31,7 @@
     never shown to anyone else. There is no advertising, no analytics and no
     tracking.
   </p>
-  <p class="updated">Last updated: 11 October 2026. Applies to Decide Together for iOS, version 1.0.</p>
+  <p class="updated">Last updated: 13 October 2026. Applies to Decide Together for iOS, version 1.0.</p>
 
   <nav class="toc" aria-label="On this page">
     <p class="toc-title">On this page</p>
@@ -144,19 +144,30 @@
     Nothing is sent to Anthropic unless you use the feature.
   </p>
 
-  <h3 id="photo-search">Photos for AI cards</h3>
+  <h3 id="photo-search">Pictures for AI cards</h3>
   <p>
-    For cards written by AI, our server searches
+    Every card written by AI gets a picture. For holidays, places to eat and
+    other real things, our server first searches
     <strong>Wikimedia Commons</strong> and <strong>Openverse</strong> by card
     title for freely licensed photos. The app shows each photo's photographer
     and licence.
   </p>
   <p>
-    Your phone loads these photos directly from the sites that host them.
-    Openverse finds photos hosted on other sites, so a photo found through it
-    loads from that site. Each site sees your phone's IP address, as it would
-    for any website visit. Photos on the built-in holiday cards come with the
-    app and load from nowhere.
+    Films, games, and cards with no suitable photo get an illustration
+    instead. Our server sends <strong>fal.ai</strong> a short description of
+    a scene for that card, such as "a pink hotel on a snowy mountainside",
+    and fal's image model paints it. Claude writes the description about the
+    card itself: it is not what you typed, and Claude is told to leave out
+    anything from "Anything we should know?". The app labels these pictures
+    as AI-generated. We keep them in our storage and reuse them for the same
+    card in other people's decks.
+  </p>
+  <p>
+    Your phone loads photos directly from the sites that host them, and
+    illustrations from our storage. Openverse finds photos hosted on other
+    sites, so a photo found through it loads from that site. Each site sees
+    your phone's IP address, as it would for any website visit. Photos on the
+    built-in holiday cards come with the app and load from nowhere.
   </p>
 
   <h3 id="links">Links you add</h3>
@@ -207,6 +218,9 @@
 
     <dt>Wikimedia Commons and Openverse</dt>
     <dd>Photo search for AI cards, by card title.</dd>
+
+    <dt>fal.ai</dt>
+    <dd>Paints illustrations for AI cards from a description of the card. Nothing about you is sent.</dd>
   </dl>
 
   <h2 id="not">What we don't do</h2>
