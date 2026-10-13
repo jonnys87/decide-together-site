@@ -126,11 +126,12 @@
   <h3 id="ai">AI cards</h3>
   <p>
     "Describe it" (on a holiday deck, "Or describe the trip") has AI write
-    cards from a sentence you type. When you use it, our server sends
+    cards from a sentence you type, and "Fill in with AI" fills in a card you
+    are adding from its title. When you use either, our server sends
     <strong>Anthropic</strong>, through its Claude API:
   </p>
   <ul>
-    <li>the sentence you typed;</li>
+    <li>the sentence you typed, or the card's title and subtitle;</li>
     <li>the deck's type, and its title if you have given it one;</li>
     <li>anything you wrote under "Anything we should know?";</li>
     <li>the titles of cards already in the deck, so it doesn't repeat them;</li>
@@ -141,12 +142,12 @@
     the request under its commercial terms, which don't allow it to train its
     models on the request. See
     <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>.
-    Nothing is sent to Anthropic unless you use the feature.
+    Nothing is sent to Anthropic unless you use one of these features.
   </p>
 
   <h3 id="photo-search">Pictures for AI cards</h3>
   <p>
-    Every card written by AI gets a picture. For holidays, places to eat and
+    Every card written or filled in by AI gets a picture. For holidays, places to eat and
     other real things, our server first searches
     <strong>Wikimedia Commons</strong> and <strong>Openverse</strong> by card
     title for freely licensed photos. The app shows each photo's photographer
@@ -191,14 +192,16 @@
 
   <h3 id="purchases">Purchases</h3>
   <p>
-    Apple takes the payment for Pro. We never see your card or billing details.
+    Apple takes the payment for Pro, a monthly or yearly subscription. We never
+    see your card or billing details.
   </p>
   <p>
-    Apple sends us a signed record of the purchase: a transaction number, the
-    product, the dates, whether it has been refunded, and whether it was a test
-    or a real purchase. We link it to your account so Pro works and Restore
-    purchases can bring it back. Apple also sends us notice of refunds, so Pro
-    ends after one.
+    Apple sends us a signed record of the subscription: a transaction number,
+    the product, the dates, when it ends unless it renews, whether it is set to
+    renew, whether it has been refunded, and whether it was a test or a real
+    purchase. We link it to your account so Pro works and Restore purchases can
+    bring it back. Apple also tells us when it renews, lapses or is refunded,
+    so Pro starts and ends at the right time.
   </p>
 
   <h2 id="services">Who handles your data</h2>
@@ -260,9 +263,10 @@
   <p>Two records stay:</p>
   <ul>
     <li>
-      Your purchase record, without your account ID, because the purchase
-      belongs to your Apple ID. You don't need to buy again: Restore purchases
-      brings Pro back on a new account.
+      Your subscription record, without your account ID, because the
+      subscription belongs to your Apple ID. Deleting your account doesn't
+      cancel it: do that in your iPhone's Settings › your name › Subscriptions.
+      Restore purchases brings Pro back on a new account.
     </li>
     <li>
       The record of AI requests, without your account ID, for our monthly cost
