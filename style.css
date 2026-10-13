@@ -1,50 +1,50 @@
-/* Decide Together support site.
+/* Sorted support site.
    Vanilla CSS, mobile first, no build step, no framework, no web fonts.
 
    Colours come from the app's Theme.swift (paper, paperDeep, card, ink,
-   muted, coral, coralDeep, lagoon, sun), so the site and the app look like
-   the same thing. Two are changed for text, in light mode only:
+   muted, red, yellow), so the site and the app look like the same thing.
+   Two are adjusted for text in light mode, because the masthead and footer
+   sit on the darker paperDeep:
 
-   - Links, the wordmark and the focus ring use coralDeep darkened from
-     #d95243 to #b93425: the same hue, 12 points less lightness. #d95243 is
-     3.76:1 on paper and 3.34:1 on paperDeep, which fails AA.
-   - Secondary text uses the app's muted grey darkened from #6c7773 to
-     #5d6763. #6c7773 is 4.36:1 on paper and 3.86:1 on paperDeep.
+   - Links and the focus ring use red #b8301a, a little deeper than the
+     app's text red #c9361a, which is 4.35:1 on paperDeep and fails AA.
+   - Secondary text uses grey #67625c rather than the app's #6e6963, which
+     is 4.54:1 on paperDeep: a pass, but with no room to spare.
 
    WCAG 2 contrast ratios, on paper (page), card (boxes) and paperDeep
    (masthead and footer):
 
      Light                    paper    card    deep
-     ink        #233c43       10.96   11.46    9.72
-     secondary  #5d6763        5.50    5.75    4.88
-     accent     #b93425        5.50    5.76    4.88
+     ink        #141414       17.24   18.42   15.38
+     secondary  #67625c        5.65    6.04    5.04
+     accent     #b8301a        5.65    6.04    5.04
 
      Dark                     paper    card    deep
-     ink        #f9edcf       12.36   10.38   13.77
-     secondary  #bdc4b8        8.05    6.76    8.97
-     accent     #ff9a86        7.00    5.88    7.80
+     ink        #faf7f2       17.24   15.41   16.11
+     secondary  #a39e98        6.93    6.20    6.48
+     accent     #ff7a5e        7.19    6.43    6.72
 
-   The contact placeholder is ink #233c43 on sun #f7c548 in both schemes:
-   7.25:1. The skip link is ink on card. The focus ring is the accent, so it
-   is at least 4.88:1 against anything it can sit on, above the 3:1 needed
-   for non-text. Coral, lagoon and sun are 1.5 to 2.9:1 on paper in light
-   mode, so they only ever appear as decorative borders, never as text.
-   Every text pair is at or above 4.5:1, in both schemes. */
+   The contact placeholder is ink #141414 on yellow #ffd84d in both
+   schemes: 13.32:1. The skip link is ink on card. The focus ring is the
+   accent, so it is at least 5.04:1 against anything it can sit on, above
+   the 3:1 needed for non-text. Brand red #ff4b2b is 3.12:1 on paper and
+   yellow 1.29:1, so they only ever appear as the wordmark's full stop and
+   decorative borders, never as text. Every text pair is at or above 4.5:1,
+   in both schemes. */
 
 :root {
   color-scheme: light dark;
-  --bg: #fff7e7;
-  --bg-deep: #f7e9cc;
-  --surface: #fffdf5;
-  --ink: #233c43;
-  --secondary: #5d6763;
-  --accent: #b93425;
-  --coral: #f9785e;
-  --lagoon: #27a8a2;
-  --sun: #f7c548;
-  --night-ink: #233c43;
+  --bg: #faf7f2;
+  --bg-deep: #efeae1;
+  --surface: #ffffff;
+  --ink: #141414;
+  --secondary: #67625c;
+  --accent: #b8301a;
+  --red: #ff4b2b;
+  --yellow: #ffd84d;
+  --night-ink: #141414;
   /* Hairlines are ink at low opacity, as the app draws its outlines. */
-  --border: rgba(35, 60, 67, 0.18);
+  --border: rgba(20, 20, 20, 0.14);
   --radius: 16px;
   --measure: 36rem;
   --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -52,15 +52,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #182d32;
-    --bg-deep: #122429;
-    --surface: #203a3f;
-    --ink: #f9edcf;
-    --secondary: #bdc4b8;
-    --accent: #ff9a86;
-    --coral: #ff8169;
-    --lagoon: #5dccbf;
-    --border: rgba(249, 237, 207, 0.16);
+    --bg: #141414;
+    --bg-deep: #1c1b19;
+    --surface: #201f1d;
+    --ink: #faf7f2;
+    --secondary: #a39e98;
+    --accent: #ff7a5e;
+    --border: rgba(250, 247, 242, 0.14);
   }
 }
 
@@ -72,16 +70,13 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 400 1.0625rem/1.65 ui-serif, Georgia, "Times New Roman", serif;
+  font: 400 1.0625rem/1.65 var(--ui);
 }
 
-/* Headings and controls in the system UI face; body copy in a serif. */
-h1, h2, h3, .lede, nav, footer, table, .toc-title {
-  font-family: var(--ui);
-}
-
-h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
-h1 { font-size: clamp(2rem, 8vw, 2.75rem); letter-spacing: -0.02em; }
+/* Headings are heavy and tight, after the app's Bricolage Grotesque, but
+   in the system face: the site loads no fonts. */
+h1, h2, h3 { line-height: 1.15; margin: 0 0 0.5em; font-weight: 800; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2rem, 8vw, 2.75rem); letter-spacing: -0.035em; }
 h2 { font-size: clamp(1.4rem, 5vw, 1.75rem); margin-top: 2.75rem; }
 h3 { font-size: 1.125rem; margin-top: 1.75rem; }
 p { margin: 0 0 1rem; }
@@ -135,14 +130,17 @@ main.wrap { padding-block-start: 2.5rem; }
   justify-content: space-between;
 }
 
+/* "sorted." in ink, with the full stop in brand red as on the icon. */
 .wordmark {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font: 700 1.25rem/1 var(--ui);
-  color: var(--accent);
+  font: 800 1.5rem/1 var(--ui);
+  letter-spacing: -0.04em;
+  color: var(--ink);
   text-decoration: none;
 }
+.wordmark .stop { color: var(--red); }
 
 /* Scoped to the masthead, so the contents list on each page stays a list. */
 .masthead ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
@@ -186,12 +184,12 @@ main.wrap { padding-block-start: 2.5rem; }
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 4px solid var(--coral);
+  border-left: 4px solid var(--red);
   border-radius: var(--radius);
   padding: 1.25rem;
   margin: 1.25rem 0;
 }
-.card.calm { border-left-color: var(--lagoon); }
+.card.calm { border-left-color: var(--yellow); }
 .card h3 { margin-top: 0; }
 .card > :last-child { margin-bottom: 0; }
 
@@ -215,7 +213,7 @@ th, td {
   border-bottom: 1px solid var(--border);
 }
 td { white-space: nowrap; }
-thead th { border-bottom: 2px solid var(--coral); }
+thead th { border-bottom: 2px solid var(--red); }
 tbody th { font-weight: 400; }
 
 /* Definition lists, for the services list on the privacy page */
@@ -237,9 +235,9 @@ footer {
 footer p:last-child { margin-bottom: 0; }
 
 /* Text that must be replaced before release. Loud on purpose, in both
-   schemes: dark ink on sun yellow, with a dashed accent border. */
+   schemes: dark ink on yellow, with a dashed accent border. */
 .placeholder {
-  background: var(--sun);
+  background: var(--yellow);
   color: var(--night-ink);
   border: 2px dashed var(--accent);
   border-radius: 6px;
